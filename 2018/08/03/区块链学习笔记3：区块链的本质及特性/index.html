@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="区块链的起源思想 去中心化其实是弱中心化 P2P:peer-to-peer,person-to-person区块链雏形 中心化专人记账-&amp;gt;轮流记账（仍然不安全）-&amp;gt;共同记账(避免了中心化的问题，但是所有人都记效率低)-&amp;gt;掷骰子记账（记账人获得报酬，区块链雏形）区块与区块链 矿工必须依据前一个区块的数据才可以开始计算符合条件的随机数，保证挖矿的公平性 区块的结构：区块头（上一个区块">
+<meta name="keywords" content="区块链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链学习笔记3：区块链的本质及特性">
+<meta property="og:url" content="crazyeric00.github.io/2018/08/03/区块链学习笔记3：区块链的本质及特性/index.html">
+<meta property="og:site_name" content="In The End">
+<meta property="og:description" content="区块链的起源思想 去中心化其实是弱中心化 P2P:peer-to-peer,person-to-person区块链雏形 中心化专人记账-&amp;gt;轮流记账（仍然不安全）-&amp;gt;共同记账(避免了中心化的问题，但是所有人都记效率低)-&amp;gt;掷骰子记账（记账人获得报酬，区块链雏形）区块与区块链 矿工必须依据前一个区块的数据才可以开始计算符合条件的随机数，保证挖矿的公平性 区块的结构：区块头（上一个区块">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-20T00:34:58.927Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链学习笔记3：区块链的本质及特性">
+<meta name="twitter:description" content="区块链的起源思想 去中心化其实是弱中心化 P2P:peer-to-peer,person-to-person区块链雏形 中心化专人记账-&amp;gt;轮流记账（仍然不安全）-&amp;gt;共同记账(避免了中心化的问题，但是所有人都记效率低)-&amp;gt;掷骰子记账（记账人获得报酬，区块链雏形）区块与区块链 矿工必须依据前一个区块的数据才可以开始计算符合条件的随机数，保证挖矿的公平性 区块的结构：区块头（上一个区块">
+
+
+
+
+
+
+  <link rel="canonical" href="crazyeric00.github.io/2018/08/03/区块链学习笔记3：区块链的本质及特性/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>区块链学习笔记3：区块链的本质及特性 | In The End</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/CrazyEric00" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">In The End</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Eric的个人博客</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="crazyeric00.github.io/2018/08/03/区块链学习笔记3：区块链的本质及特性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eric">
+      <meta itemprop="description" content="如果奇迹有颜色">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="In The End">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">区块链学习笔记3：区块链的本质及特性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-03 11:04:05" itemprop="dateCreated datePublished" datetime="2018-08-03T11:04:05Z">2018-08-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-20 00:34:58" itemprop="dateModified" datetime="2019-03-20T00:34:58Z">2019-03-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/区块链/" itemprop="url" rel="index"><span itemprop="name">区块链</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="区块链的起源思想"><a href="#区块链的起源思想" class="headerlink" title="区块链的起源思想"></a>区块链的起源思想</h2><ul>
+<li>去中心化其实是弱中心化</li>
+<li>P2P:peer-to-peer,person-to-person<h2 id="区块链雏形"><a href="#区块链雏形" class="headerlink" title="区块链雏形"></a>区块链雏形</h2></li>
+<li>中心化专人记账-&gt;轮流记账（仍然不安全）-&gt;共同记账(避免了中心化的问题，但是所有人都记效率低)-&gt;掷骰子记账（记账人获得报酬，区块链雏形）<h2 id="区块与区块链"><a href="#区块与区块链" class="headerlink" title="区块与区块链"></a>区块与区块链</h2></li>
+<li>矿工必须依据前一个区块的数据才可以开始计算符合条件的随机数，保证挖矿的公平性</li>
+<li>区块的结构：区块头（上一个区块的哈希值，时间戳，Nonce——矿工要推导的随机数，梅克尔树根——也是一个哈希值，将所有的交易清单两两哈希生成最终的哈希值，版本，目标难度系数），将这六个信息拼接成一个字符串求出一个哈希值，而我们挖矿就是使用这个哈希值结合随机数判断和目标的大小，当我们随机生成的Nonce然后拼出来的哈希值小于目标哈希值的时候，就是我们挖到矿了，向全网广播并确认。然后全网验证（挖矿速度非常慢但是验证很快）后就计入账本，然后利用这个区块进行下一次计算。</li>
+<li>区块一旦篡改区块链就断了</li>
+<li>区块链形象地成为分布式共享账本</li>
+<li>区块链数据由所有节点共同维护，区块链也被称作制造信用的机器，具有机器信任</li>
+<li>通过时间戳和工作量证明机制解决了双花与拜占庭问题，节点可以保持一致性</li>
+<li>非对称加密机制——保证私钥安全性<h2 id="区块链核心技术"><a href="#区块链核心技术" class="headerlink" title="区块链核心技术"></a>区块链核心技术</h2></li>
+<li>P2P网络：点对点交易，没有中间方</li>
+<li>分布式存储：所有节点信息统一，交易不可篡改</li>
+<li>加密算法：确保交易不被破快，保护用户隐私与交易记录</li>
+<li>共识算法（共识机制）：实现自动网络共识</li>
+<li>智能合约：通过自动化脚本操作数据<h2 id="区块链模型（从下往上）"><a href="#区块链模型（从下往上）" class="headerlink" title="区块链模型（从下往上）"></a>区块链模型（从下往上）</h2></li>
+<li>数据层：基本算法</li>
+<li>网络层：P2P网络</li>
+<li>共识层：让分散在全世界不同地区的人对一件事情达成共识（比特币：POW共识——工作量共识）</li>
+<li>激励层：发行机制，分配机制等</li>
+<li>合约层：智能合约（比特币谈不上智能合约）</li>
+<li>应用层（开发人员）：可编程货币，可编程金融，可编程社会<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2></li>
+<li>比特币：C++</li>
+<li>以太坊：多语言接口（C++，GO，Python，Java）</li>
+<li>超级账本的Fabric：Go</li>
+<li>DragonChain：Python</li>
+<li>Wanchain：C++<h2 id="区块链分类（按准入机制分类）"><a href="#区块链分类（按准入机制分类）" class="headerlink" title="区块链分类（按准入机制分类）"></a>区块链分类（按准入机制分类）</h2></li>
+<li>公有链</li>
+<li>联盟链：需要指定几个节点为记账人</li>
+<li>私有链：完全封闭，记录内部交易，由公司与个人共享<h2 id="区块链资产特点"><a href="#区块链资产特点" class="headerlink" title="区块链资产特点"></a>区块链资产特点</h2></li>
+<li>全球流通</li>
+<li>去中心化</li>
+<li>不可复制</li>
+<li>匿名性：基本匿名、高级匿名、极致匿名</li>
+<li>比特币是基本匿名，不知道比特币地址对应的是谁。但是一旦知道，就可以查到所有的相关转账记录</li>
+<li>达世币、门罗币是高级匿名，查不到转账信息</li>
+<li>zcash是极致匿名，只有拥有私钥的人才可以查到所有的转账信息<h2 id="用区块链保存信息"><a href="#用区块链保存信息" class="headerlink" title="用区块链保存信息"></a>用区块链保存信息</h2></li>
+<li>星际文件系统IPFS：对于大的附件使用星际文件系统保存<h2 id="国外区块链知名项目"><a href="#国外区块链知名项目" class="headerlink" title="国外区块链知名项目"></a>国外区块链知名项目</h2></li>
+<li>EverLedger：珠宝一站式追踪鉴定平台，为钻石加上“数字指纹”，然后放在区块链数据库中将钻石信息上链。目前已经有200多万钻石</li>
+<li>Monegraph：知识产权保护<h2 id="国内区块链知名项目"><a href="#国内区块链知名项目" class="headerlink" title="国内区块链知名项目"></a>国内区块链知名项目</h2></li>
+<li>迅雷链克：前身为“玩客币”</li>
+<li>人人坊</li>
+<li>网易招财猫</li>
+<li>蚂蚁金服旗下公益慈善<h2 id="区块链的不足"><a href="#区块链的不足" class="headerlink" title="区块链的不足"></a>区块链的不足</h2></li>
+<li>效率低</li>
+<li>存储数据量少</li>
+<li>能耗。耗电量大</li>
+<li>淡化国家监管，带来非法产业</li>
+<li>DApp缺点：1.更新和修bug困难，每个节点更新麻烦。2.无法验证用户身份。3.开发困难，生态圈小。</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/区块链/" rel="tag"><i class="fa fa-tag"></i> 区块链</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/分治法：归并排序求逆序对/" rel="next" title="分治法：归并排序求逆序对">
+                <i class="fa fa-chevron-left"></i> 分治法：归并排序求逆序对
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/03/区块链学习笔记4：比特币挖矿/" rel="prev" title="区块链学习笔记4：比特币挖矿">
+                区块链学习笔记4：比特币挖矿 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODIzNi8xNDc2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Eric</p>
+              <p class="site-description motion-element" itemprop="description">如果奇迹有颜色</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CrazyEric00" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/CrazyEric00?s=09" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/profile.php?id=100024861292913" target="_blank" title="FaceBook"><i class="fa fa-fw fa-facebook"></i>FaceBook</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://leetcode-cn.com/crazyeric00/" target="_blank" title="Leetcode(China)"><i class="fa fa-fw fa-code"></i>Leetcode(China)</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://codeforces.com/profile/CrazyEric" target="_blank" title="Codeforces"><i class="fa fa-fw fa-code"></i>Codeforces</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ltitan.github.io/" title="飞哥的博客" target="_blank">飞哥的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jangit.cn/" title="Jangit学长的博客" target="_blank">Jangit学长的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链的起源思想"><span class="nav-number">1.</span> <span class="nav-text">区块链的起源思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链雏形"><span class="nav-number">2.</span> <span class="nav-text">区块链雏形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块与区块链"><span class="nav-number">3.</span> <span class="nav-text">区块与区块链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链核心技术"><span class="nav-number">4.</span> <span class="nav-text">区块链核心技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链模型（从下往上）"><span class="nav-number">5.</span> <span class="nav-text">区块链模型（从下往上）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编程语言"><span class="nav-number">6.</span> <span class="nav-text">编程语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链分类（按准入机制分类）"><span class="nav-number">7.</span> <span class="nav-text">区块链分类（按准入机制分类）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链资产特点"><span class="nav-number">8.</span> <span class="nav-text">区块链资产特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用区块链保存信息"><span class="nav-number">9.</span> <span class="nav-text">用区块链保存信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#国外区块链知名项目"><span class="nav-number">10.</span> <span class="nav-text">国外区块链知名项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#国内区块链知名项目"><span class="nav-number">11.</span> <span class="nav-text">国内区块链知名项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链的不足"><span class="nav-number">12.</span> <span class="nav-text">区块链的不足</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eric</span>
+
+  
+
+  
+</div>
+
+
+
+
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+<!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+-->
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+</body>
+</html>

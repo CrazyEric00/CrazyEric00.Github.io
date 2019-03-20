@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前面的文章我介绍了RNN循环神经网络，在最后提了一些关于RNN神经网络的一些问题。今天我们就要针对RNN神经网络存在的问题介绍一个改进版本——LSTM神经网络。 毋庸置疑，RNNs在语音识别、语言建模、翻译、图像字幕等方面取得了令人难以置信的成功！但是，目前很多的应用并不是基于标准的RNN，而是对RNN进行改进的版本，LSTM神经网络通过对RNN的机制做了一些更加复杂的改进而成功地站上了主流舞台。">
+<meta name="keywords" content="神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LSTM神经网络">
+<meta property="og:url" content="crazyeric00.github.io/2019/03/20/LSTM神经网络/index.html">
+<meta property="og:site_name" content="In The End">
+<meta property="og:description" content="前面的文章我介绍了RNN循环神经网络，在最后提了一些关于RNN神经网络的一些问题。今天我们就要针对RNN神经网络存在的问题介绍一个改进版本——LSTM神经网络。 毋庸置疑，RNNs在语音识别、语言建模、翻译、图像字幕等方面取得了令人难以置信的成功！但是，目前很多的应用并不是基于标准的RNN，而是对RNN进行改进的版本，LSTM神经网络通过对RNN的机制做了一些更加复杂的改进而成功地站上了主流舞台。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/img/LSTM神经网络1.png">
+<meta property="og:image" content="/img/LSTM神经网络2.png">
+<meta property="og:image" content="/img/LSTM神经网络3.png">
+<meta property="og:image" content="/img/LSTM神经网络4.png">
+<meta property="og:image" content="/img/LSTM神经网络5.png">
+<meta property="og:image" content="/img/LSTM神经网络6.png">
+<meta property="og:image" content="/img/LSTM神经网络7.png">
+<meta property="og:image" content="/img/LSTM神经网络8.png">
+<meta property="og:image" content="/img/LSTM神经网络9.png">
+<meta property="og:image" content="/img/LSTM神经网络10.png">
+<meta property="og:image" content="/img/LSTM神经网络11.png">
+<meta property="og:image" content="/img/LSTM神经网络12.png">
+<meta property="og:updated_time" content="2019-03-20T02:41:04.359Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LSTM神经网络">
+<meta name="twitter:description" content="前面的文章我介绍了RNN循环神经网络，在最后提了一些关于RNN神经网络的一些问题。今天我们就要针对RNN神经网络存在的问题介绍一个改进版本——LSTM神经网络。 毋庸置疑，RNNs在语音识别、语言建模、翻译、图像字幕等方面取得了令人难以置信的成功！但是，目前很多的应用并不是基于标准的RNN，而是对RNN进行改进的版本，LSTM神经网络通过对RNN的机制做了一些更加复杂的改进而成功地站上了主流舞台。">
+<meta name="twitter:image" content="/img/LSTM神经网络1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="crazyeric00.github.io/2019/03/20/LSTM神经网络/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LSTM神经网络 | In The End</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/CrazyEric00" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">In The End</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Eric的个人博客</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="crazyeric00.github.io/2019/03/20/LSTM神经网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eric">
+      <meta itemprop="description" content="如果奇迹有颜色">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="In The End">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LSTM神经网络
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-20 10:36:22 / 修改时间：02:41:04" itemprop="dateCreated datePublished" datetime="2019-03-20T10:36:22Z">2019-03-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/深度学习/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>前面的文章我介绍了RNN循环神经网络，在最后提了一些关于RNN神经网络的一些问题。今天我们就要针对RNN神经网络存在的问题介绍一个改进版本——LSTM神经网络。</p>
+<p>毋庸置疑，RNNs在语音识别、语言建模、翻译、图像字幕等方面取得了令人难以置信的成功！但是，目前很多的应用并不是基于标准的RNN，而是对RNN进行改进的版本，LSTM神经网络通过对RNN的机制做了一些更加复杂的改进而成功地站上了主流舞台。</p>
+<h1 id="长期依赖问题"><a href="#长期依赖问题" class="headerlink" title="长期依赖问题"></a>长期依赖问题</h1><p>首先想要弄明白LSTM就得先充分理解是哪些因素导致了RNN出现梯度爆炸和梯度消失的问题，所以我们需要深度挖掘一下是什么导致了梯度爆炸和梯度消失的问题呢？</p>
+<p>在RNN的文章里我举了一个例子，说是我们的时间线拉的特别长，我们需要让RNN记住全部的信息，然后我们利用公式推导的W要不断地连乘，然后就导致越乘越大，或者是越乘越小。好的，如果让你去解决这个问题，你会怎么解决呢？</p>
+<p>你肯定会觉得时间线太长了，会想要试图去缩短这根时间线，我们可以只让神经网络记住最近的信息，遥远的记忆就直接忘记算了，我们可以举个例子，假设我们的朋友问我们告诉我们三件事情：“诶那个谁谁谁又找对象了，有家店的什么什么东西特别好吃，我们今天晚上去不去那里？”。我们需要让神经网络记住所有的信息吗，好像并不需要，特别是1和2，3明显是分开的，我们分析第二句和第三句的时候很明显不需要再去分析第一句了。</p>
+<p>那么问题来了，我们似乎得手动设置一个长度来控制信息是否过期，这个就非常头疼了。人类的语言和情感是相当复杂的，我们并不能找到一个定理说“在24小时后你说的这句话一定就是废话！”相反，我们完全可以举出反例说有些话即使经过了很长很长的时间仍然非常有用，是关键信息。比如，有人今天跟你说：“借我100大洋，我下个月还你。”那么，这条信息的保质期就非常长了，当下个月你去找他聊天的时候，谈到钱这个关键词的时候，你说“还我100”类似的话的几率就相当高了。</p>
+<p>这个例子确实非常重要，如果我们的神经网络是手动设置长度，那么想当然地假如你们这一个月内疯狂聊天，并且所有的话都被录入了神经网络，然后你又非常大方地在一个月内没有提起过还钱。那么，如果你想让RNN成功预测你在准时一个月后会管他要钱，你总不能为了这一条记住一个月内的所有信息吧。假设你只分析了一天之内的聊天信息，那么机器连他欠你钱都不知道。。。能预测出还钱才是见鬼了呢。</p>
+<p>再举一个例子， 大家基本上都读过侦探小说吧。我们如果想让我们的机器判断出凶手，我们总得分析所有的事情吧，不能说这里我设置一个时间把前面的线索全都忘了再去判断吧。</p>
+<p>所以，科学家们得出的结论是，为了保险起见，必须得分析所有的时间点，不能不负责任地忘记某些信息。</p>
+<p>那么，问题又来了，如何既能保留住有效的信息，又能够缩短序列呢？科学家们想了一个办法，我们可不可以设置如同过滤网一样的东西，每一个单元就对信息做一次筛选，把有用的信息保存，把没用的信息删掉呢？然后学术界一顿捣鼓，就出来了LSTM神经网络。</p>
+<h1 id="LSTM神经网络介绍"><a href="#LSTM神经网络介绍" class="headerlink" title="LSTM神经网络介绍"></a>LSTM神经网络介绍</h1><p>LSTM的设计就是为了避免长期依赖问题。长时间记忆信息实际上是他们的默认行为，而不是他们努力学习的东西!</p>
+<p>所有的递归神经网络都具有一系列神经网络重复模块的形式。在标准的RNNs中，这个重复的模块有一个非常简单的结构，比如一个单一的tanh层。如下图就是标准RNN单元</p>
+<p><img src="/img/LSTM神经网络1.png" alt></p>
+<p>我们可以看到标准RNN的单元结构非常简单，但是LSTM就要复杂多了，请看下面的LSTM神经网络的单元</p>
+<p><img src="/img/LSTM神经网络2.png" alt></p>
+<p>我们看到这个图就非常复杂了，我们一会儿完整地剖析一下，首先我们来介绍一下符号的意思</p>
+<p><img src="/img/LSTM神经网络3.png" alt></p>
+<p>在上面的图中，每一根黑色的线都携带一个完整的向量，就是从一个节点的输出到其他节点的输入。粉色的圆圈表示向量与向量之间的计算，比如向量加法，而黄色的方框表示学习神经网络层。行合并表示连接，而行分叉表示要复制的内容和要到不同位置的副本。</p>
+<p>好，理解了符号的意思，我们就来剖析一下具体的结构吧！</p>
+<h1 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h1><p>首先LSTM神经网络保留了RNN那一条主要的时间链，仍然将过去的信息传到将来，所以下图中我们就看到了顶部的这条线</p>
+<p><img src="/img/LSTM神经网络4.png" alt></p>
+<p>但是我们看到不一样的是，这条链上有两个粉色的圈圈，一个是向量乘法，一个是向量加法，都是从下面上来的数据对我们已经在时间线上的数据进行操作，所以我们先看一部分，也就是乘法操作，乘法操作和下面的结构被称为“门”，功能很像数字逻辑里的门电路。先看图</p>
+<p><img src="/img/LSTM神经网络5.png" alt></p>
+<p>我们仔细观察黄色的那个矩形，里面是sigmoid函数，sigmoid函数的作用就是把其他的数值变成0~1之间的数字，然后我们用0~1之间的数值去乘上时间链上的数据，那不就是对数据做了筛选么？如果乘的数字偏近于1，就相当于对数据进行了保留，允许这一段数据保留下来，如果乘的数字偏近0，就相当于进行了过滤，将这些不要的数据成分变少。</p>
+<h1 id="遗忘门、输入门与输出门"><a href="#遗忘门、输入门与输出门" class="headerlink" title="遗忘门、输入门与输出门"></a>遗忘门、输入门与输出门</h1><h2 id="遗忘门"><a href="#遗忘门" class="headerlink" title="遗忘门"></a>遗忘门</h2><p>首先我们先来介绍遗忘门，先看下图</p>
+<p><img src="/img/LSTM神经网络6.png" alt></p>
+<p>首先我们看到下面的x和h合并了，我们可以发现那个h是上一个单元的输出信息，我们将上一个单元的输出与这个单元的输入合并，然后使用sigmoid函数，在这之后，sigmoid函数会为前面的C向量的每个信息输出0~1之间的数字，也就是选择要不要保留前面的信息，也就是选择是否遗忘前面的信息，这样就起到了筛选的作用。</p>
+<h2 id="输入门"><a href="#输入门" class="headerlink" title="输入门"></a>输入门</h2><p><img src="/img/LSTM神经网络7.png" alt></p>
+<p>我们刚才讲了遗忘，那么我们既然把前面的信息遗忘了，如果不加入新的信息加以代替，就会导致我们的信息越传越少。当然，对于新信息我们也不能一昧地加入，因为前面的垃圾信息已经被遗忘门去除了大部分，我们不能因为加入了当前的垃圾信息然后导致当前单元的输出不准，所以我们需要对当前的输入也做筛选然后将其加入（这也就是为什么有一个乘法操作然后后面又有一个加法操作的原因）。</p>
+<p>我们将其分成两部分，首先是tanh函数那一部分，tanh函数在这里作为一个激活函数（输入到输出的映射，如果不理解激活函数请百度）,tanh函数出来的值就像是选秀节目候选区的选手，等着评委将他们中出色的选走，那么我们很容易通过遗忘门的sigmoid函数来理解，这不又是一次过滤嘛！只不过这次过滤的只是输出而已，sigmoid函数就像评委，一个个对输入做筛选，将优秀保留下来加进最顶端的传送链中。</p>
+<h2 id="长期依赖问题的解决"><a href="#长期依赖问题的解决" class="headerlink" title="长期依赖问题的解决"></a>长期依赖问题的解决</h2><p><img src="/img/LSTM神经网络8.png" alt></p>
+<p>至此我们对C的部分的操作都已经完成了，我们可以看到LSTM通过两个部分的操作就完成了RNN解决不了的问题，首先对时间链上的元素做一次筛选，当筛选后数据丢了很多，我们就对输入和上一次的输出合并后再做一次筛选然后加入到时间链中。这样长此以往我们就能充分保留有用的数据，但是数据的规模也不会扩大，不会导致模型过于复杂、时间链太长而爆炸。</p>
+<h2 id="输出门"><a href="#输出门" class="headerlink" title="输出门"></a>输出门</h2><p><img src="/img/LSTM神经网络9.png" alt></p>
+<p>我们看到输出门的主要的信息都是从上面那条链引下来的，上面的链的数据经过了一个tanh激活函数后，再使用前面的sigmoid函数再次筛选然后输出。</p>
+<h1 id="LSTM神经网络变种"><a href="#LSTM神经网络变种" class="headerlink" title="LSTM神经网络变种"></a>LSTM神经网络变种</h1><h2 id="窥视孔连接"><a href="#窥视孔连接" class="headerlink" title="窥视孔连接"></a>窥视孔连接</h2><p><img src="/img/LSTM神经网络10.png" alt></p>
+<p>一个流行的LSTM变种，由Gers &amp; Schmidhuber (2000)提出，加入了“窥视孔连接(peephole connection)”。也就是说我们让各种门可以观察到链中的状态。上图中，对于所有的门都加入了“窥视孔”，不过也有一些论文中只加一部分。</p>
+<h2 id="对偶的遗忘门和输入门"><a href="#对偶的遗忘门和输入门" class="headerlink" title="对偶的遗忘门和输入门"></a>对偶的遗忘门和输入门</h2><p><img src="/img/LSTM神经网络11.png" alt></p>
+<p>另一种变种是使用对偶的遗忘门和输入门。我们不再是单独地决定需要遗忘什么信息，需要加入什么新信息,而是一起做决定：我们只会在需要在某处放入新信息时忘记该处的旧值,我们只会在已经忘记旧值的位置放入新值。</p>
+<h2 id="GRU神经网络"><a href="#GRU神经网络" class="headerlink" title="GRU神经网络"></a>GRU神经网络</h2><p><img src="/img/LSTM神经网络12.png" alt></p>
+<p>另一个变化更大一些的LSTM变种叫做Gated Recurrent Unit，或者GRU，由Cho, et al. (2014)提出。GRU将遗忘门和输入门合并成为单一的“更新门(Update Gate)”。GRU同时也将元胞状态(Cell State)和隐状态(Hidden State)合并，同时引入其他的一些变化。该模型比标准的LSTM模型更加简化，同时现在也变得越来越流行。</p>
+<h1 id="图片来源"><a href="#图片来源" class="headerlink" title="图片来源"></a>图片来源</h1><p>图片主要参考的是Christopher Olah的博客，下面给出传送门:</p>
+<p><a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">https://colah.github.io/posts/2015-08-Understanding-LSTMs/</a></p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>终于码完这篇博文了，简直写到要吐，希望大家可以学到点东西吧！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/神经网络/" rel="tag"><i class="fa fa-tag"></i> 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/20/如何拥有一个微信聊天机器人/" rel="next" title="如何拥有一个微信聊天机器人">
+                <i class="fa fa-chevron-left"></i> 如何拥有一个微信聊天机器人
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODIzNi8xNDc2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Eric</p>
+              <p class="site-description motion-element" itemprop="description">如果奇迹有颜色</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CrazyEric00" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/CrazyEric00?s=09" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/profile.php?id=100024861292913" target="_blank" title="FaceBook"><i class="fa fa-fw fa-facebook"></i>FaceBook</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://leetcode-cn.com/crazyeric00/" target="_blank" title="Leetcode(China)"><i class="fa fa-fw fa-code"></i>Leetcode(China)</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://codeforces.com/profile/CrazyEric" target="_blank" title="Codeforces"><i class="fa fa-fw fa-code"></i>Codeforces</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ltitan.github.io/" title="飞哥的博客" target="_blank">飞哥的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jangit.cn/" title="Jangit学长的博客" target="_blank">Jangit学长的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#长期依赖问题"><span class="nav-number">1.</span> <span class="nav-text">长期依赖问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LSTM神经网络介绍"><span class="nav-number">2.</span> <span class="nav-text">LSTM神经网络介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心思想"><span class="nav-number">3.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遗忘门、输入门与输出门"><span class="nav-number">4.</span> <span class="nav-text">遗忘门、输入门与输出门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#遗忘门"><span class="nav-number">4.1.</span> <span class="nav-text">遗忘门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入门"><span class="nav-number">4.2.</span> <span class="nav-text">输入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长期依赖问题的解决"><span class="nav-number">4.3.</span> <span class="nav-text">长期依赖问题的解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出门"><span class="nav-number">4.4.</span> <span class="nav-text">输出门</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LSTM神经网络变种"><span class="nav-number">5.</span> <span class="nav-text">LSTM神经网络变种</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#窥视孔连接"><span class="nav-number">5.1.</span> <span class="nav-text">窥视孔连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对偶的遗忘门和输入门"><span class="nav-number">5.2.</span> <span class="nav-text">对偶的遗忘门和输入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRU神经网络"><span class="nav-number">5.3.</span> <span class="nav-text">GRU神经网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图片来源"><span class="nav-number">6.</span> <span class="nav-text">图片来源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写在最后"><span class="nav-number">7.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eric</span>
+
+  
+
+  
+</div>
+
+
+
+
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+<!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+-->
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+</body>
+</html>

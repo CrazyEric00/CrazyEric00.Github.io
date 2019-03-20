@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="分治法的应用——归并排序既然我们上一篇讲到了分治法，那么就来提一提由分治法为核心的一个排序算法——归并排序 我上一篇介绍了分治法的一个经典的应用，就是处理最大连续区间和问题，那么，这次这个应用可能更加经典，知道的人也更多，但是，有些人可能并没有将归并排序的核心算法与分治联合起来，虽然他们之间根本就是差不多的。 其实归并排序也就是像前一篇文章中介绍的一样，只需要不停地将排序区间切成两半，不停地切分，">
+<meta name="keywords" content="排序,分治">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分治法：归并排序（多图警告！）">
+<meta property="og:url" content="crazyeric00.github.io/2018/08/02/分治法：归并排序/index.html">
+<meta property="og:site_name" content="In The End">
+<meta property="og:description" content="分治法的应用——归并排序既然我们上一篇讲到了分治法，那么就来提一提由分治法为核心的一个排序算法——归并排序 我上一篇介绍了分治法的一个经典的应用，就是处理最大连续区间和问题，那么，这次这个应用可能更加经典，知道的人也更多，但是，有些人可能并没有将归并排序的核心算法与分治联合起来，虽然他们之间根本就是差不多的。 其实归并排序也就是像前一篇文章中介绍的一样，只需要不停地将排序区间切成两半，不停地切分，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/img/归并排序1.png">
+<meta property="og:image" content="/img/归并排序2.png">
+<meta property="og:image" content="/img/归并排序3.png">
+<meta property="og:image" content="/img/归并排序4.png">
+<meta property="og:image" content="/img/归并排序5.png">
+<meta property="og:image" content="/img/归并排序6.png">
+<meta property="og:image" content="/img/归并排序7.png">
+<meta property="og:image" content="/img/归并排序8.png">
+<meta property="og:image" content="/img/归并排序9.png">
+<meta property="og:image" content="/img/归并排序10.png">
+<meta property="og:updated_time" content="2019-03-20T00:34:57.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分治法：归并排序（多图警告！）">
+<meta name="twitter:description" content="分治法的应用——归并排序既然我们上一篇讲到了分治法，那么就来提一提由分治法为核心的一个排序算法——归并排序 我上一篇介绍了分治法的一个经典的应用，就是处理最大连续区间和问题，那么，这次这个应用可能更加经典，知道的人也更多，但是，有些人可能并没有将归并排序的核心算法与分治联合起来，虽然他们之间根本就是差不多的。 其实归并排序也就是像前一篇文章中介绍的一样，只需要不停地将排序区间切成两半，不停地切分，">
+<meta name="twitter:image" content="/img/归并排序1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="crazyeric00.github.io/2018/08/02/分治法：归并排序/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>分治法：归并排序（多图警告！） | In The End</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/CrazyEric00" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">In The End</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Eric的个人博客</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="crazyeric00.github.io/2018/08/02/分治法：归并排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eric">
+      <meta itemprop="description" content="如果奇迹有颜色">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="In The End">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分治法：归并排序（多图警告！）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-02 11:34:15" itemprop="dateCreated datePublished" datetime="2018-08-02T11:34:15Z">2018-08-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-20 00:34:57" itemprop="dateModified" datetime="2019-03-20T00:34:57Z">2019-03-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="分治法的应用——归并排序"><a href="#分治法的应用——归并排序" class="headerlink" title="分治法的应用——归并排序"></a>分治法的应用——归并排序</h1><p>既然我们上一篇讲到了分治法，那么就来提一提由分治法为核心的一个排序算法——归并排序</p>
+<p>我上一篇介绍了分治法的一个经典的应用，就是处理最大连续区间和问题，那么，这次这个应用可能更加经典，知道的人也更多，但是，有些人可能并没有将归并排序的核心算法与分治联合起来，虽然他们之间根本就是差不多的。</p>
+<p>其实归并排序也就是像前一篇文章中介绍的一样，只需要不停地将排序区间切成两半，不停地切分，但是，与上一个连续区间和问题不同的是，归并排序的合并并不是简单的使用max函数就可以完成的（切分到一个元素的时候可以使用，但是元素数量增多就不行了）。</p>
+<p>好，我们现在来正式介绍一下归并排序的原理</p>
+<p>首先，请大家考虑这个问题，如果我有两个有序的数组，我该如何将这两个有序数组构造成一个更大的有序数组呢，首先我们需要使用两个指针指向两个数组的最小元素，然后比较，将较小的那个元素拿出来放到新开辟的数组的最开始的位置，然后将指向较小元素的指针向后移动，然后继续比较，以此类推，这样当其中一个指针移动到队尾（说明这个数组已经全部比较完了），我们就把剩下一个指针后面的数字全部移到新数组里去就可以了，这就完成了两个有序数组的合并了，可以看下面的图示：<br><img src="/img/归并排序1.png" alt><br><img src="/img/归并排序2.png" alt><br><img src="/img/归并排序3.png" alt><br><img src="/img/归并排序4.png" alt><br><img src="/img/归并排序5.png" alt><br><img src="/img/归并排序6.png" alt><br>这上面的图可是我一张一张画出来的，是不是对这个过程感觉很清晰了呢？那么我们继续往下走。</p>
+<p>我们上面提到的合并过程就是归并排序作为一个分治应用问题所特有的一部分核心操作，可能有些生疏的同学还没有意识到这个合并过程与归并排序的关系。不要紧，我马上就用图示来还原一下归并排序的具体操作，为了清晰明了，我把上面讲的合并过程在下面的途中记为“合并”，当你们看到下面一串图中的“合并”的字时说明是执行上面所说的有序数组合并的过程，ok，下面我放图了：<br><img src="/img/归并排序7.png" alt><br><img src="/img/归并排序8.png" alt><br><img src="/img/归并排序9.png" alt><br><img src="/img/归并排序10.png" alt><br>上面图示的过程就是归并排序所有的过程，当然，有人问单数怎么办？其实很简单，有序数组合并操作完全没有要求说两个数组长度必须相等啊，有兴趣试一试的同学可以结合下面的代码自己在脑子里或者纸上走一遍。</p>
+<p>趁热打铁！我们来看代码！结合代码你就会完全理解原理了，其实并没有那么难。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge_sort</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> left,<span class="keyword">int</span> right,<span class="keyword">int</span> *t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(right-left&gt;<span class="number">1</span>)&#123;<span class="comment">//由于一个元素时根本不用操作，所以设立了一个“门槛”</span></span><br><span class="line">        <span class="comment">//int mid=(left+right)/2;(溢出漏洞)</span></span><br><span class="line">        <span class="keyword">int</span> mid=left+(right-left)/<span class="number">2</span>;<span class="comment">//又是熟悉的配方</span></span><br><span class="line">        <span class="keyword">int</span> p=left,q=mid,i=left;</span><br><span class="line">        merge_sort(a,left,mid,t);<span class="comment">//左边分割</span></span><br><span class="line">        merge_sort(a,mid,right,t);<span class="comment">//右边分割</span></span><br><span class="line">        <span class="keyword">while</span>(p&lt;mid||q&lt;right)&#123;<span class="comment">//这一个while就是在执行我们的合并操作，你看出来了吗？</span></span><br><span class="line">            <span class="keyword">if</span>(q&gt;=right||(p&lt;mid&amp;&amp;a[p]&lt;= a[q]))</span><br><span class="line">                t[i++]=a[p++];</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                t[i++]=a[q++];</span><br><span class="line">        &#125;<span class="comment">//不妨调试一下或者找张纸模拟一下</span></span><br><span class="line">        <span class="keyword">for</span>(i=left;i&lt;right;i++)<span class="comment">//重新把排好序的数组还给a</span></span><br><span class="line">            a[i]=t[i];         <span class="comment">// 我的图示中为了直观没有特意画出辅助的t数组，但是在实际操作中是有的</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//如果只有一个元素了就会什么都不做直接从末尾出去</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">        <span class="keyword">int</span> *a=<span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">int</span> *t=<span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        <span class="comment">//使用了开区间，归并排序的闭区间算法需要+1-1需要考虑细节过于麻烦，开区间就很方便</span></span><br><span class="line">        merge_sort(a,<span class="number">0</span>,n,t);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i) <span class="built_in">cout</span> &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; a[i] ;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><p>我们上次分析了最大连续区间和问题的时间复杂度，那么今天来分析一下归并排序的，我们几乎可惊讶的发现，两者几乎是相等的，都是O(nlogn)的复杂度，至于怎么推算得来的，大家可以自己研究（很简单），我这里不再赘述。</p>
+<p>我这里还有一个问题，那就是我下一篇要写的逆序对问题，我们给出一个由n个数字构成的数组（并没有排好序，乱序的），然后我们要算出里面有多少逆序对。什么是逆序对呢，我举个例子：5,2,1,3,4里面就有五对逆序对：5-2,5-1,5-3,5-4,2-1。</p>
+<p>好的，我们怎么才能快速算出逆序对呢，其实非常简单，只需要在归并排的基础上加一点点修改就可以了，希望有兴趣的同学可以自己思考一下，下次我就会写这个问题。</p>
+<p>ok，这次归并排序做的非常用心了，感谢大家支持</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/排序/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
+          
+            <a href="/tags/分治/" rel="tag"><i class="fa fa-tag"></i> 分治</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/分治法：经典最大连续和问题/" rel="next" title="分治法：经典最大连续和问题">
+                <i class="fa fa-chevron-left"></i> 分治法：经典最大连续和问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/03/分治法：归并排序求逆序对/" rel="prev" title="分治法：归并排序求逆序对">
+                分治法：归并排序求逆序对 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODIzNi8xNDc2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Eric</p>
+              <p class="site-description motion-element" itemprop="description">如果奇迹有颜色</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CrazyEric00" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/CrazyEric00?s=09" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/profile.php?id=100024861292913" target="_blank" title="FaceBook"><i class="fa fa-fw fa-facebook"></i>FaceBook</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://leetcode-cn.com/crazyeric00/" target="_blank" title="Leetcode(China)"><i class="fa fa-fw fa-code"></i>Leetcode(China)</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://codeforces.com/profile/CrazyEric" target="_blank" title="Codeforces"><i class="fa fa-fw fa-code"></i>Codeforces</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ltitan.github.io/" title="飞哥的博客" target="_blank">飞哥的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://jangit.cn/" title="Jangit学长的博客" target="_blank">Jangit学长的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分治法的应用——归并排序"><span class="nav-number">1.</span> <span class="nav-text">分治法的应用——归并排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间复杂度"><span class="nav-number">3.</span> <span class="nav-text">时间复杂度</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eric</span>
+
+  
+
+  
+</div>
+
+
+
+
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+<!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+-->
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;"></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+</body>
+</html>
