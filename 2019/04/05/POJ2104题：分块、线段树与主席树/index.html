@@ -110,18 +110,18 @@
 
 
 
-  <meta name="description" content="题目题目传送门：http://poj.org/problem?id=2104 K-th Number    Time Limit: 20000MS  Memory Limit: 65536K     Total Submissions: 71694  Accepted: 25530   Case Time Limit: 2000MS     Description You are working">
+  <meta name="description" content="题目题目传送门：http://poj.org/problem?id=2104 K-th Number     Time Limit: 20000MS  Memory Limit: 65536K     Total Submissions: 71694  Accepted: 25530   Case Time Limit: 2000MS      Description You are workin">
 <meta name="keywords" content="线段树,分块算法,主席树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POJ2104题：分块与主席树">
 <meta property="og:url" content="crazyeric00.github.io/2019/04/05/POJ2104题：分块、线段树与主席树/index.html">
 <meta property="og:site_name" content="In The End">
-<meta property="og:description" content="题目题目传送门：http://poj.org/problem?id=2104 K-th Number    Time Limit: 20000MS  Memory Limit: 65536K     Total Submissions: 71694  Accepted: 25530   Case Time Limit: 2000MS     Description You are working">
+<meta property="og:description" content="题目题目传送门：http://poj.org/problem?id=2104 K-th Number     Time Limit: 20000MS  Memory Limit: 65536K     Total Submissions: 71694  Accepted: 25530   Case Time Limit: 2000MS      Description You are workin">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-04-05T11:21:36.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="POJ2104题：分块与主席树">
-<meta name="twitter:description" content="题目题目传送门：http://poj.org/problem?id=2104 K-th Number    Time Limit: 20000MS  Memory Limit: 65536K     Total Submissions: 71694  Accepted: 25530   Case Time Limit: 2000MS     Description You are working">
+<meta name="twitter:description" content="题目题目传送门：http://poj.org/problem?id=2104 K-th Number     Time Limit: 20000MS  Memory Limit: 65536K     Total Submissions: 71694  Accepted: 25530   Case Time Limit: 2000MS      Description You are workin">
 
 
 
@@ -401,6 +401,7 @@
       
         <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>题目传送门：<a href="http://poj.org/problem?id=2104" target="_blank" rel="noopener">http://poj.org/problem?id=2104</a></p>
 <p>K-th Number</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -421,12 +422,13 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>Description</p>
 <p>You are working for Macrohard company in data structures department. After failing your previous task about key insertion you were asked to write a new data structure that would be able to return quickly k-th order statistics in the array segment.<br>That is, given an array a[1…n] of different integer numbers, your program must answer a series of questions Q(i, j, k) in the form: “What would be the k-th number in a[i…j] segment, if this segment was sorted?”<br>For example, consider the array a = (1, 5, 2, 6, 3, 7, 4). Let the question be Q(2, 5, 3). The segment a[2…5] is (5, 2, 6, 3). If we sort this segment, we get (2, 3, 5, 6), the third number is 5, and therefore the answer to the question is 5.</p>
 <p>Input</p>
-<p>The first line of the input file contains n — the size of the array, and m — the number of questions to answer (1 &lt;= n &lt;= 100 000, 1 &lt;= m &lt;= 5 000).<br>The second line contains n different integer numbers not exceeding 109 by their absolute values — the array for which the answers should be given.<br>The following m lines contain question descriptions, each description consists of three numbers: i, j, and k (1 &lt;= i &lt;= j &lt;= n, 1 &lt;= k &lt;= j - i + 1) and represents the question Q(i, j, k).</p>
+<p>The first line of the input file contains n —- the size of the array, and m —- the number of questions to answer (1 &lt;= n &lt;= 100 000, 1 &lt;= m &lt;= 5 000).<br>The second line contains n different integer numbers not exceeding 109 by their absolute values —- the array for which the answers should be given.<br>The following m lines contain question descriptions, each description consists of three numbers: i, j, and k (1 &lt;= i &lt;= j &lt;= n, 1 &lt;= k &lt;= j - i + 1) and represents the question Q(i, j, k).</p>
 <p>Output</p>
-<p>For each question output the answer to it — the k-th number in sorted a[i…j] segment.</p>
+<p>For each question output the answer to it —- the k-th number in sorted a[i…j] segment.</p>
 <p>Sample Input</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">7 3</span><br><span class="line">1 5 2 6 3 7 4</span><br><span class="line">2 5 3</span><br><span class="line">4 4 1</span><br><span class="line">1 7 3</span><br></pre></td></tr></table></figure>
 <p>Sample Output</p>
