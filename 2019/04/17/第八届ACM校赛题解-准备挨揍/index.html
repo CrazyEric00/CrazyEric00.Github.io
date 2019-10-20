@@ -118,7 +118,7 @@
 <meta property="og:site_name" content="In The End">
 <meta property="og:description" content="出来挨揍了哈哈哈哈哈哈哈哈哈哈哈 这次跟飞哥出题的主旨呢(其实并没有什么主旨)就是把难度梯度分开一些，让大家充分感受到ACM校赛的亲切感(你信吗？反正我是不信)。 总得来讲我们把七道题目(先除去可爱的签到题嘤嘤嘤)分成了三个档次，一个是ACM选手能较轻松过完，外来选手们能够得到锻炼的题目，B题C题就是这一个档次的题目，不过首先来说一下A题 A题(签到题)题目传送门:https://ac.2333.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-17T13:01:27.820Z">
+<meta property="og:updated_time" content="2019-09-24T03:06:07.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第八届ACM校赛题解(准备挨揍)">
 <meta name="twitter:description" content="出来挨揍了哈哈哈哈哈哈哈哈哈哈哈 这次跟飞哥出题的主旨呢(其实并没有什么主旨)就是把难度梯度分开一些，让大家充分感受到ACM校赛的亲切感(你信吗？反正我是不信)。 总得来讲我们把七道题目(先除去可爱的签到题嘤嘤嘤)分成了三个档次，一个是ACM选手能较轻松过完，外来选手们能够得到锻炼的题目，B题C题就是这一个档次的题目，不过首先来说一下A题 A题(签到题)题目传送门:https://ac.2333.">
@@ -329,12 +329,24 @@
                 
               
 
-              <time title="创建时间：2019-04-17 15:20:08 / 修改时间：13:01:27" itemprop="dateCreated datePublished" datetime="2019-04-17T15:20:08Z">2019-04-17</time>
+              <time title="创建时间：2019-04-17 15:20:08" itemprop="dateCreated datePublished" datetime="2019-04-17T15:20:08Z">2019-04-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-24 03:06:07" itemprop="dateModified" datetime="2019-09-24T03:06:07Z">2019-09-24</time>
               
             
           </span>
@@ -440,6 +452,7 @@
 <p>所以这个问题就变成了——将一个区间更新的线段树的update函数功能改成修改区间值，将query函数功能改成区间查询最大值，这就造出了一个”四不像线段树”，但是我能过题你气不气？</p>
 <p>所以下面就是我AC的魔改线段树(因为这题网上查不到别人写的题解，我至今也不知道我这个是不是正规套路，所以暂且就叫魔改线段树吧)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;cstring&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn=100010;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct node&#123;</span><br><span class="line">    int l,r;</span><br><span class="line">    int sum,lazy;</span><br><span class="line">    void update(int val)&#123;</span><br><span class="line">        sum=val;</span><br><span class="line">        lazy=val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;tree[4*maxn];</span><br><span class="line"></span><br><span class="line">struct Q&#123;</span><br><span class="line">    int l,r;</span><br><span class="line">&#125;q[maxn];</span><br><span class="line"></span><br><span class="line">void push_up(int x)&#123;</span><br><span class="line">    tree[x].sum=max(tree[x&lt;&lt;1].sum,tree[(x&lt;&lt;1)|1].sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void push_down(int x)&#123;</span><br><span class="line">    int val=tree[x].lazy;</span><br><span class="line">    if(val)&#123;</span><br><span class="line">        tree[x&lt;&lt;1].update(val);</span><br><span class="line">        tree[(x&lt;&lt;1)|1].update(val);</span><br><span class="line">        tree[x].lazy=0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void build(int x,int l,int r)&#123;</span><br><span class="line">    tree[x].l=l,tree[x].r=r,tree[x].lazy=0;</span><br><span class="line">    if(l==r)</span><br><span class="line">        tree[x].sum=0;</span><br><span class="line">    else&#123;</span><br><span class="line">        int mid=(l+r)/2;</span><br><span class="line">        build(x&lt;&lt;1,l,mid);</span><br><span class="line">        build((x&lt;&lt;1)|1,mid+1,r);</span><br><span class="line">        push_up(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void update(int x,int l,int r,int val)&#123;</span><br><span class="line">    int L=tree[x].l,R=tree[x].r;</span><br><span class="line">    if(l&lt;=L&amp;&amp;R&lt;=r)</span><br><span class="line">        tree[x].update(val);</span><br><span class="line">    else&#123;</span><br><span class="line">        push_down(x);</span><br><span class="line">        int mid=(L+R)/2;</span><br><span class="line">        if(l&lt;=mid) update(x&lt;&lt;1,l,r,val);</span><br><span class="line">        if(r&gt;mid) update((x&lt;&lt;1)|1,l,r,val);</span><br><span class="line">        push_up(x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int query(int x,int l,int r)&#123;</span><br><span class="line">    int L=tree[x].l,R=tree[x].r;</span><br><span class="line">    if(l&lt;=L&amp;&amp;R&lt;=r)</span><br><span class="line">        return tree[x].sum;</span><br><span class="line">    else&#123;</span><br><span class="line">        int sum=0;</span><br><span class="line">        push_down(x);</span><br><span class="line">        int mid=(L+R)/2;</span><br><span class="line">        if(l&lt;=mid) sum=max(sum,query(x&lt;&lt;1,l,r));</span><br><span class="line">        if(r&gt;mid) sum=max(sum,query((x&lt;&lt;1)|1,l,r));</span><br><span class="line">        push_up(x);</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    ios::sync_with_stdio(false);</span><br><span class="line">    int n;</span><br><span class="line">    while(cin&gt;&gt;n)&#123;</span><br><span class="line">        memset(q,0,sizeof(q));</span><br><span class="line">        memset(tree,0,sizeof(tree));</span><br><span class="line">        int mx=0;</span><br><span class="line">        for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">            cin&gt;&gt;q[i].l&gt;&gt;q[i].r;</span><br><span class="line">            mx=max(mx,q[i].r);</span><br><span class="line">        &#125;</span><br><span class="line">        build(1,1,mx);</span><br><span class="line">        for(int i=1;i&lt;=n;i++) &#123;</span><br><span class="line">            int ans=query(1, q[i].l, q[i].r)+1;</span><br><span class="line">            cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">            update(1, q[i].l, q[i].r, ans);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -553,7 +566,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
