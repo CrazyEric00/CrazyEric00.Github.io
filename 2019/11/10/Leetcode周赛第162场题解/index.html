@@ -110,23 +110,23 @@
 
 
 
-  <meta name="description" content="一小时自信AK，结果还是掉出了100名。。。  写一波细节，ACM公众号的题解就给广哥去更新了（手动滑稽）  周赛传送门https://leetcode-cn.com/contest/weekly-contest-162 5255. 奇数值单元格的数目题目给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。 另有一个索引数组 indices，indices[i] = [ri,">
+  <meta name="description" content="一小时自信AK，结果还是掉出了100名。。。  写一波题解，ACM公众号的题解就给广哥去更新了（手动滑稽）  周赛传送门https://leetcode-cn.com/contest/weekly-contest-162 5255. 奇数值单元格的数目题目给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。 另有一个索引数组 indices，indices[i] = [ri,">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode周赛第162场题解">
 <meta property="og:url" content="crazyeric00.github.io/2019/11/10/Leetcode周赛第162场题解/index.html">
 <meta property="og:site_name" content="In The End">
-<meta property="og:description" content="一小时自信AK，结果还是掉出了100名。。。  写一波细节，ACM公众号的题解就给广哥去更新了（手动滑稽）  周赛传送门https://leetcode-cn.com/contest/weekly-contest-162 5255. 奇数值单元格的数目题目给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。 另有一个索引数组 indices，indices[i] = [ri,">
+<meta property="og:description" content="一小时自信AK，结果还是掉出了100名。。。  写一波题解，ACM公众号的题解就给广哥去更新了（手动滑稽）  周赛传送门https://leetcode-cn.com/contest/weekly-contest-162 5255. 奇数值单元格的数目题目给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。 另有一个索引数组 indices，indices[i] = [ri,">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/img/Leetcode周赛第162场题解1.png">
 <meta property="og:image" content="/img/Leetcode周赛第162场题解2.png">
 <meta property="og:image" content="/img/Leetcode周赛第162场题解3.png">
 <meta property="og:image" content="/img/Leetcode周赛第162场题解4.png">
 <meta property="og:image" content="/img/Leetcode周赛第162场题解5.png">
-<meta property="og:updated_time" content="2019-11-10T05:20:37.559Z">
+<meta property="og:updated_time" content="2019-11-10T05:46:11.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode周赛第162场题解">
-<meta name="twitter:description" content="一小时自信AK，结果还是掉出了100名。。。  写一波细节，ACM公众号的题解就给广哥去更新了（手动滑稽）  周赛传送门https://leetcode-cn.com/contest/weekly-contest-162 5255. 奇数值单元格的数目题目给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。 另有一个索引数组 indices，indices[i] = [ri,">
+<meta name="twitter:description" content="一小时自信AK，结果还是掉出了100名。。。  写一波题解，ACM公众号的题解就给广哥去更新了（手动滑稽）  周赛传送门https://leetcode-cn.com/contest/weekly-contest-162 5255. 奇数值单元格的数目题目给你一个 n 行 m 列的矩阵，最开始的时候，每个单元格中的值都是 0。 另有一个索引数组 indices，indices[i] = [ri,">
 <meta name="twitter:image" content="/img/Leetcode周赛第162场题解1.png">
 
 
@@ -335,7 +335,7 @@
                 
               
 
-              <time title="创建时间：2019-11-10 12:37:59 / 修改时间：05:20:37" itemprop="dateCreated datePublished" datetime="2019-11-10T12:37:59Z">2019-11-10</time>
+              <time title="创建时间：2019-11-10 12:37:59 / 修改时间：05:46:11" itemprop="dateCreated datePublished" datetime="2019-11-10T12:37:59Z">2019-11-10</time>
             
 
             
@@ -407,7 +407,7 @@
       
         <p>一小时自信AK，结果还是掉出了100名。。。</p>
 <p><img src="/img/Leetcode周赛第162场题解1.png" alt="img"></p>
-<p>写一波细节，ACM公众号的题解就给广哥去更新了（手动滑稽） </p>
+<p>写一波题解，ACM公众号的题解就给广哥去更新了（手动滑稽） </p>
 <h1 id="周赛传送门"><a href="#周赛传送门" class="headerlink" title="周赛传送门"></a>周赛传送门</h1><p><a href="https://leetcode-cn.com/contest/weekly-contest-162" target="_blank" rel="noopener">https://leetcode-cn.com/contest/weekly-contest-162</a></p>
 <h1 id="5255-奇数值单元格的数目"><a href="#5255-奇数值单元格的数目" class="headerlink" title="5255. 奇数值单元格的数目"></a>5255. 奇数值单元格的数目</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>给你一个 <code>n</code> 行 <code>m</code> 列的矩阵，最开始的时候，每个单元格中的值都是 <code>0</code>。</p>
 <p>另有一个索引数组 <code>indices</code>，<code>indices[i] = [ri, ci]</code> 中的 <code>ri</code> 和 <code>ci</code> 分别表示指定的行和列（从 <code>0</code> 开始编号）。</p>
