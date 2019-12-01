@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="夜猫赛传送门https://leetcode-cn.com/contest/biweekly-contest-14/ 5112. 十六进制魔术数字题目你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 0 变成字母 O ，将数字 1 变成字母 I 。 如果一个数字在转换后只包含 {&amp;quot;A&amp;quot;, &amp;quot;B&amp;quo">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode第14场双周赛">
+<meta property="og:url" content="crazyeric00.github.io/2019/12/01/Leetcode第14场双周赛/index.html">
+<meta property="og:site_name" content="In The End">
+<meta property="og:description" content="夜猫赛传送门https://leetcode-cn.com/contest/biweekly-contest-14/ 5112. 十六进制魔术数字题目你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 0 变成字母 O ，将数字 1 变成字母 I 。 如果一个数字在转换后只包含 {&amp;quot;A&amp;quot;, &amp;quot;B&amp;quo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/img/Leetcode第14场双周赛1.png">
+<meta property="og:image" content="/img/Leetcode第14场双周赛2.png">
+<meta property="og:updated_time" content="2019-12-01T11:31:12.438Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode第14场双周赛">
+<meta name="twitter:description" content="夜猫赛传送门https://leetcode-cn.com/contest/biweekly-contest-14/ 5112. 十六进制魔术数字题目你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 0 变成字母 O ，将数字 1 变成字母 I 。 如果一个数字在转换后只包含 {&amp;quot;A&amp;quot;, &amp;quot;B&amp;quo">
+<meta name="twitter:image" content="/img/Leetcode第14场双周赛1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="crazyeric00.github.io/2019/12/01/Leetcode第14场双周赛/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Leetcode第14场双周赛 | In The End</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/CrazyEric00" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">In The End</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Eric的个人博客</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="crazyeric00.github.io/2019/12/01/Leetcode第14场双周赛/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Eric">
+      <meta itemprop="description" content="如果奇迹有颜色">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="In The End">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Leetcode第14场双周赛
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-01 09:37:47 / 修改时间：11:31:12" itemprop="dateCreated datePublished" datetime="2019-12-01T09:37:47Z">2019-12-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/" itemprop="url" rel="index"><span itemprop="name">ACM</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ACM/Leetcode/" itemprop="url" rel="index"><span itemprop="name">Leetcode</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="夜猫赛传送门"><a href="#夜猫赛传送门" class="headerlink" title="夜猫赛传送门"></a>夜猫赛传送门</h1><p><a href="https://leetcode-cn.com/contest/biweekly-contest-14/" target="_blank" rel="noopener">https://leetcode-cn.com/contest/biweekly-contest-14/</a></p>
+<h1 id="5112-十六进制魔术数字"><a href="#5112-十六进制魔术数字" class="headerlink" title="5112. 十六进制魔术数字"></a>5112. 十六进制魔术数字</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 <code>0</code> 变成字母 <code>O</code> ，将数字 <code>1</code> 变成字母 <code>I</code> 。</p>
+<p>如果一个数字在转换后只包含 <code>{&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;, &quot;F&quot;, &quot;I&quot;, &quot;O&quot;}</code> ，那么我们就认为这个转换是有效的。</p>
+<p>给你一个字符串 <code>num</code> ，它表示一个十进制数 <code>N</code>，如果它的十六进制魔术数字转换是有效的，请返回转换后的结果，否则返回 <code>&quot;ERROR&quot;</code> 。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：num = &quot;257&quot;</span><br><span class="line">输出：&quot;IOI&quot;</span><br><span class="line">解释：257 的十六进制表示是 101 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：num = &quot;3&quot;</span><br><span class="line">输出：&quot;ERROR&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;= N &lt;= 10^12</li>
+<li>给定字符串不会有前导 0 。</li>
+<li>结果中的所有字母都应该是大写字母。</li>
+</ul>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>简单的进制转换+判断</p>
+<p>用一个栈把顺序调转过来</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">toHexspeak</span><span class="params">(<span class="built_in">string</span> num)</span> </span>&#123;</span><br><span class="line">        ll n=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> c:num)&#123;</span><br><span class="line">            n*=<span class="number">10</span>;</span><br><span class="line">            n+=(c-<span class="string">'0'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n%<span class="number">16</span>&gt;=<span class="number">2</span>&amp;&amp;n%<span class="number">16</span>&lt;=<span class="number">9</span>) <span class="keyword">return</span> <span class="string">"ERROR"</span>;</span><br><span class="line">            s.push(n%<span class="number">16</span>);</span><br><span class="line">            n/=<span class="number">16</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> ans;</span><br><span class="line">        <span class="keyword">while</span>(!s.empty())&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.top()==<span class="number">0</span>) ans+=<span class="string">'O'</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.top()==<span class="number">1</span>) ans+=<span class="string">'I'</span>;</span><br><span class="line">            <span class="keyword">else</span> ans+=(s.top()<span class="number">-10</span>+<span class="string">'A'</span>);</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="5113-删除区间"><a href="#5113-删除区间" class="headerlink" title="5113. 删除区间"></a>5113. 删除区间</h1><h2 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h2><p>给你一个 <strong>有序的</strong> 不相交区间列表 <code>intervals</code> 和一个要删除的区间 <code>toBeRemoved</code>， <code>intervals</code> 中的每一个区间 <code>intervals[i] = [a, b]</code> 都表示满足 <code>a &lt;= x &lt; b</code> 的所有实数 <code>x</code> 的集合。</p>
+<p>我们将 <code>intervals</code> 中任意区间与 <code>toBeRemoved</code> 有交集的部分都删除。</p>
+<p>返回删除所有交集区间后， <code>intervals</code> 剩余部分的 <strong>有序</strong> 列表。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[0,2],[3,4],[5,7]], toBeRemoved = [1,6]</span><br><span class="line">输出：[[0,1],[6,7]]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：intervals = [[0,5]], toBeRemoved = [2,3]</span><br><span class="line">输出：[[0,2],[3,5]]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;= intervals.length &lt;= 10^4</li>
+<li>-10^9 &lt;= intervals[i][0] &lt; intervals[i][1] &lt;= 10^9</li>
+</ul>
+<h2 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h2><p>设要删除的区间为[l,r)，等待被删除的区间为[x,y)分五种情况考虑</p>
+<ul>
+<li>y&lt;=l||x&gt;=r ，根本没有删除</li>
+<li>x<r&&y>=l&amp;&amp;r&gt;=r，还剩下[r,y)这一段</r&&y></li>
+<li>x&lt;=l&amp;&amp;y&gt;l&amp;&amp;y&lt;=r，还剩下[x,l)这一段</li>
+<li>x&gt;=l&amp;&amp;y&lt;=r，全部都被删掉了</li>
+<li>x&lt;l&amp;&amp;y&lt;r，被切分成了两部分[x,l)和[r,y)</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; removeInterval(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; v, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; b) &#123;</span><br><span class="line">        <span class="keyword">int</span> l=b[<span class="number">0</span>],r=b[<span class="number">1</span>];</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> p:v)&#123;</span><br><span class="line">            <span class="keyword">if</span>(p[<span class="number">1</span>]&lt;=l||p[<span class="number">0</span>]&gt;=r) ans.push_back(&#123;p[<span class="number">0</span>],p[<span class="number">1</span>]&#125;);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(p[<span class="number">0</span>]&lt;r&amp;&amp;p[<span class="number">1</span>]&gt;=r&amp;&amp;l&lt;=p[<span class="number">0</span>]) ans.push_back(&#123;r,p[<span class="number">1</span>]&#125;);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(p[<span class="number">0</span>]&lt;=l&amp;&amp;p[<span class="number">1</span>]&gt;l&amp;&amp;r&gt;=p[<span class="number">1</span>]) ans.push_back(&#123;p[<span class="number">0</span>],l&#125;);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(l&lt;=p[<span class="number">0</span>]&amp;&amp;r&gt;=p[<span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(l&gt;p[<span class="number">0</span>]&amp;&amp;r&lt;p[<span class="number">1</span>])&#123;</span><br><span class="line">                ans.push_back(&#123;p[<span class="number">0</span>],l&#125;);</span><br><span class="line">                ans.push_back(&#123;r,p[<span class="number">1</span>]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(ans.begin(),ans.end(),[](<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; a,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; b)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[<span class="number">0</span>]==b[<span class="number">0</span>]) <span class="keyword">return</span> a[<span class="number">1</span>]&lt;b[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> a[<span class="number">0</span>]&lt;b[<span class="number">0</span>];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="5114-删除树节点"><a href="#5114-删除树节点" class="headerlink" title="5114. 删除树节点"></a>5114. 删除树节点</h1><h2 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h2><p>给你一棵以节点 0 为根节点的树，定义如下：</p>
+<ul>
+<li>节点的总数为 <code>nodes</code> 个；</li>
+<li>第 <code>i</code> 个节点的值为 <code>value[i]</code> ；</li>
+<li>第 <code>i</code> 个节点的父节点是 <code>parent[i]</code> 。</li>
+</ul>
+<p>请你删除节点值之和为 0 的每一棵子树。</p>
+<p>在完成所有删除之后，返回树中剩余节点的数目。</p>
+<p><strong>示例：</strong></p>
+<p><img src="/img/Leetcode第14场双周赛1.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;= nodes &lt;= 10^4</li>
+<li>-10^5 &lt;= value[i] &lt;= 10^5</li>
+<li>parent.length == nodes</li>
+<li><code>parent[0] == -1</code> 表示节点 <code>0</code> 是树的根。</li>
+</ul>
+<h2 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h2><p>首先先建树，根据所给的信息用邻接表建树</p>
+<p>然后建立一个新数组记录每一个节点的子树的节点个数</p>
+<p>两趟DFS，第一趟首先进行递归求和和求子树的节点个数，第二趟直接把和为0的节点的子树的节点个数加入答案（其实可以一个DFS解决的，但是当时没有想到）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line">    <span class="keyword">int</span> d[<span class="number">10010</span>],ans;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> w[<span class="number">10010</span>];</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; g[<span class="number">10010</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        g[a].push_back(b);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v:g[u])&#123;</span><br><span class="line">            dfs1(v);</span><br><span class="line">            w[u]+=w[v];</span><br><span class="line">            d[u]+=d[v];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(w[u]==<span class="number">0</span>)&#123;</span><br><span class="line">            ans+=d[u];</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> v:g[u])&#123;</span><br><span class="line">            dfs2(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteTreeNodes</span><span class="params">(<span class="keyword">int</span> n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; par, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; val)</span> </span>&#123;</span><br><span class="line">        ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> root=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            w[i]=val[i];</span><br><span class="line">            <span class="keyword">if</span>(par[i]!=<span class="number">-1</span>)</span><br><span class="line">                add(par[i],i);</span><br><span class="line">            <span class="keyword">else</span> root=i;</span><br><span class="line">            d[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">        dfs1(root);</span><br><span class="line">        dfs2(root);</span><br><span class="line">        <span class="keyword">return</span> n-ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="5136-矩形内船只的数目"><a href="#5136-矩形内船只的数目" class="headerlink" title="5136. 矩形内船只的数目"></a>5136. 矩形内船只的数目</h1><h2 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h2><p><em>(此题是 <strong>交互式问题</strong> )</em></p>
+<p>在用笛卡尔坐标系表示的二维海平面上，有一些船。每一艘船都在一个整数点上，且每一个整数点最多只有 1 艘船。</p>
+<p>有一个函数 <code>Sea.hasShips(topRight, bottomLeft)</code> ，输入参数为右上角和左下角两个点的坐标，当且仅当这两个点所表示的矩形区域（包含边界）内至少有一艘船时，这个函数才返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+<p>给你矩形的右上角 <code>topRight</code> 和左下角 <code>bottomLeft</code> 的坐标，请你返回此矩形内船只的数目。题目保证矩形内 <strong>至多只有 10 艘船</strong>。</p>
+<p>调用函数 <code>hasShips</code> <strong>超过400次</strong> 的提交将被判为 <em>错误答案（Wrong Answer）</em> 。同时，任何尝试绕过评测系统的行为都将被取消比赛资格。</p>
+<p><strong>示例：</strong></p>
+<p><img src="/img/Leetcode第14场双周赛2.png" alt="img"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">ships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]</span><br><span class="line">输出：3</span><br><span class="line">解释：在 [0,0] 到 [4,4] 的范围内总共有 3 艘船。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>ships</code> 数组只用于评测系统内部初始化。你无法得知 <code>ships</code> 的信息，所以只能通过调用 <code>hasShips</code> 接口来求解。</li>
+<li>0 &lt;= bottomLeft[0] &lt;= topRight[0] &lt;= 1000</li>
+<li>0 &lt;= bottomLeft[1] &lt;= topRight[1] &lt;= 1000</li>
+</ul>
+<h2 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h2><p>（GG于多打了一个分号QAQ）</p>
+<p>这道题目是关于矩阵分割的题目，首先只有400次询问，所以我们肯定是需要进行二分的（而且由于最多只有10艘船，我们进行二分很可能会剪枝一大块区域）</p>
+<p>首先我们定于左下角的坐标为(x1,y1)，右上角的坐标为(x2,y2)。那么我们首先进行二分找到(midx,midy)，这样我们就可以将大块的矩形分割成4个矩形递归操作，下面四个矩形的坐标是这样的（左下角在前，右上角在后）：</p>
+<ul>
+<li>(x1,y1),(midx,midy)</li>
+<li>(x,midy+1),(midx,y2)</li>
+<li>(midx+1,y1),(x2,midy)</li>
+<li>(midx+1,midy+1),(x2,y2)</li>
+</ul>
+<p>加一是因为防止重复搜索</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * // This is Sea's API interface.</span></span><br><span class="line"><span class="comment"> * // You should not implement it, or speculate about its implementation</span></span><br><span class="line"><span class="comment"> * class Sea &#123;</span></span><br><span class="line"><span class="comment"> *   public:</span></span><br><span class="line"><span class="comment"> *     bool hasShips(vector&lt;int&gt; topRight, vector&lt;int&gt; bottomLeft);</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countShips</span><span class="params">(Sea s, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; top, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; bot)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x1=bot[<span class="number">0</span>],y1=bot[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x2=top[<span class="number">0</span>],y2=top[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(y2==y1&amp;&amp;x2==x1&amp;&amp;s.hasShips(&#123;x2,y2&#125;,&#123;x1,y1&#125;)) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid_x=x2+x1&gt;&gt;<span class="number">1</span>,mid_y=y2+y1&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(mid_x&gt;=x1&amp;&amp;mid_y&gt;=y1&amp;&amp;s.hasShips(&#123;mid_x,mid_y&#125;,&#123;x1,y1&#125;))</span><br><span class="line">            ans+=countShips(s,&#123;mid_x,mid_y&#125;,&#123;x1,y1&#125;);</span><br><span class="line">        <span class="keyword">if</span>(mid_x&gt;=x1&amp;&amp;mid_y+<span class="number">1</span>&lt;=y2&amp;&amp;s.hasShips(&#123;mid_x,y2&#125;,&#123;x1,mid_y+<span class="number">1</span>&#125;))</span><br><span class="line">            ans+=countShips(s,&#123;mid_x,y2&#125;,&#123;x1,mid_y+<span class="number">1</span>&#125;);</span><br><span class="line">        <span class="keyword">if</span>(mid_x+<span class="number">1</span>&lt;=x2&amp;&amp;mid_y&gt;=y1&amp;&amp;s.hasShips(&#123;x2,mid_y&#125;,&#123;mid_x+<span class="number">1</span>,y1&#125;))</span><br><span class="line">            ans+=countShips(s,&#123;x2,mid_y&#125;,&#123;mid_x+<span class="number">1</span>,y1&#125;);</span><br><span class="line">        <span class="keyword">if</span>(mid_x+<span class="number">1</span>&lt;=x2&amp;&amp;y2&gt;=mid_y+<span class="number">1</span>&amp;&amp;s.hasShips(&#123;x2,y2&#125;,&#123;mid_x+<span class="number">1</span>,mid_y+<span class="number">1</span>&#125;))</span><br><span class="line">            ans+=countShips(s,&#123;x2,y2&#125;,&#123;mid_x+<span class="number">1</span>,mid_y+<span class="number">1</span>&#125;);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/24/Leetcode周赛第164场题解/" rel="next" title="Leetcode周赛第164场题解">
+                <i class="fa fa-chevron-left"></i> Leetcode周赛第164场题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/02/Leetcode周赛第165场题解/" rel="prev" title="Leetcode第165场周赛">
+                Leetcode第165场周赛 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODIzNi8xNDc2NA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Eric</p>
+              <p class="site-description motion-element" itemprop="description">如果奇迹有颜色</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">107</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/CrazyEric00" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/CrazyEric00?s=09" target="_blank" title="Twitter"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.facebook.com/profile.php?id=100024861292913" target="_blank" title="FaceBook"><i class="fa fa-fw fa-facebook"></i>FaceBook</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://leetcode-cn.com/crazyeric00/" target="_blank" title="Leetcode(China)"><i class="fa fa-fw fa-code"></i>Leetcode(China)</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://codeforces.com/profile/CrazyEric" target="_blank" title="Codeforces"><i class="fa fa-fw fa-code"></i>Codeforces</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://ltitan.github.io/" title="飞哥的技术园区" target="_blank">飞哥的技术园区</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://heshang.ink/" title="奎哥的Java课堂" target="_blank">奎哥的Java课堂</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kawaii-jump.github.io/" title="涛哥的就业实录" target="_blank">涛哥的就业实录</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://49.232.1.238/" title="薛老板的攻防战场" target="_blank">薛老板的攻防战场</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dumengblog.club/" title="Dumeng的知识讲解" target="_blank">Dumeng的知识讲解</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#夜猫赛传送门"><span class="nav-number">1.</span> <span class="nav-text">夜猫赛传送门</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5112-十六进制魔术数字"><span class="nav-number">2.</span> <span class="nav-text">5112. 十六进制魔术数字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">2.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5113-删除区间"><span class="nav-number">3.</span> <span class="nav-text">5113. 删除区间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目-1"><span class="nav-number">3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">3.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5114-删除树节点"><span class="nav-number">4.</span> <span class="nav-text">5114. 删除树节点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目-2"><span class="nav-number">4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-2"><span class="nav-number">4.2.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5136-矩形内船只的数目"><span class="nav-number">5.</span> <span class="nav-text">5136. 矩形内船只的数目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目-3"><span class="nav-number">5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-3"><span class="nav-number">5.2.</span> <span class="nav-text">题解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eric</span>
+
+  
+
+  
+</div>
+
+
+
+
+<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+<!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.3.0</div>
+-->
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
