@@ -118,25 +118,25 @@
 <meta property="og:site_name" content="In The End">
 <meta property="og:description" content="这篇博客我来简要地介绍一下RNN神经网络，当然也是为了学校里的比赛写的技术文档。首先申明一点，网上有非常多的介绍RNN神经网络的优秀的文章（很可能写得都比我好），我只是基于国外大神的文章做一些自己的理解，尽量保证通俗易懂，如果语言不严谨请见谅，毕竟我也不是搞学术的。 什么是RNN循环神经网络，Recurrent Neural Network。如果不熟悉神经网络的同学可以自己先去看看普通的神经网络，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络1.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络2.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络3.jpeg">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络4.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络5.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络6.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络7.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络8.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络9.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络10.png">
+<meta property="og:image" content="/img/RNN循环神经网络1.png">
+<meta property="og:image" content="/img/RNN循环神经网络2.png">
+<meta property="og:image" content="/img/RNN循环神经网络3.jpeg">
+<meta property="og:image" content="/img/RNN循环神经网络4.png">
+<meta property="og:image" content="/img/RNN循环神经网络5.png">
+<meta property="og:image" content="/img/RNN循环神经网络6.png">
+<meta property="og:image" content="/img/RNN循环神经网络7.png">
+<meta property="og:image" content="/img/RNN循环神经网络8.png">
+<meta property="og:image" content="/img/RNN循环神经网络9.png">
+<meta property="og:image" content="/img/RNN循环神经网络10.png">
 <meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络11.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络12.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络13.png">
-<meta property="og:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络14.jpeg">
-<meta property="og:updated_time" content="2019-03-20T00:34:52.201Z">
+<meta property="og:image" content="/img/RNN循环神经网络12.png">
+<meta property="og:image" content="/img/RNN循环神经网络13.png">
+<meta property="og:image" content="/img/RNN循环神经网络14.jpeg">
+<meta property="og:updated_time" content="2021-03-18T12:13:23.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN循环神经网络">
 <meta name="twitter:description" content="这篇博客我来简要地介绍一下RNN神经网络，当然也是为了学校里的比赛写的技术文档。首先申明一点，网上有非常多的介绍RNN神经网络的优秀的文章（很可能写得都比我好），我只是基于国外大神的文章做一些自己的理解，尽量保证通俗易懂，如果语言不严谨请见谅，毕竟我也不是搞学术的。 什么是RNN循环神经网络，Recurrent Neural Network。如果不熟悉神经网络的同学可以自己先去看看普通的神经网络，">
-<meta name="twitter:image" content="/Users/eric/Desktop/blog/source/img/RNN循环神经网络1.png">
+<meta name="twitter:image" content="/img/RNN循环神经网络1.png">
 
 
 
@@ -361,7 +361,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-20 00:34:52" itemprop="dateModified" datetime="2019-03-20T00:34:52Z">2019-03-20</time>
+                <time title="修改时间：2021-03-18 12:13:23" itemprop="dateModified" datetime="2021-03-18T12:13:23Z">2021-03-18</time>
               
             
           </span>
@@ -408,22 +408,22 @@
 <p>那么，现实生活中所有数据之间都没有联系吗？举个例子，我们平常说话，一些了解你的好朋友非常了解你的口头禅，你这句话没说完呢它马上就知道你想说什么以及你后面的话，假设我们把你的口头禅放进神经网络里去训练，以期望你的神经网络能够像你的老朋友一样能猜出你接下来要说的话。那么我们会发现，对于一个普通的神经网络，好像做这种事情挺困难的，因为上面提到过，普通的神经网络对于多组输入之间是没有联系的。比如，你的口头禅是“你神经病吧”，那么，你需要让你的神经网络在你说出“你神经”这三个字之后成功预测你下一个要说的字是“病”。但是普通的神经网络在你输入“你神”之后就会把这两个字丢掉，然后在第三个字“经”进去的时候就单独在神经网络中跑，然后神经网络很可能并不会认识“经病”这个词，很可能它反而会更认识“经过”、“经历”这些词语，然后你发现你的神经网络的效果就非常差了。</p>
 <p>我们来开一下脑洞来想想我们该怎么解决这个问题，很明显我们得给神经网络加上“记忆”，不能让它接受了下一个输入就忘记了上一个输入，还是那个“你神经病吧”这个例子，我们能不能变通一下，第一次我们的输入是“你”，然后下一次的输入是“你神”，再下一次是“你神经”，然后我们根据“你神经”的输入加上前面训练好的神经网络让机器输出“病”这个字。</p>
 <p>下面这张图片就是拿“hello”举的例子，请注意我中间用黑圈圈出来的那些线，这就是RNN网络不同于一般神经网络的地方</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络1.png" alt></p>
+<p><img src="/img/RNN循环神经网络1.png" alt></p>
 <p>我们可以看到，增加了黑圈圈住的路径之后，我们输入第一个“h”之后神经网络不仅仅只做输出的工作，它会将经过了隐藏层操作后的输入作为下一个单元的输入，然后和下一个单元的输入“e”一起构成一个完整的输入，那么我们在预测“l”的时候就不仅仅会考虑“e”，还会连着前面的“h”一起考虑进去，同理，第三个单元不仅仅会只考虑“l”，而是会考虑前面的“hel”，以此类推，我们会发现这个神经网络就像有了记忆功能一样，可以记住前面的信息，这样我们就避免了普通神经网络的无法保存输入之间的联系的问题。</p>
 <p>再仔细观察上面的图片，我们会发现输入层是一个向量，里面的数字分别对应着四个字符：h，e，l，o。当向量为1000时说明第一个字符“h”被点亮了，这个应该都能理解吧。我们再说说输出的向量，输出的向量代表了每一个字符的可能性，居第一个单元的例子，第一个单元的输出是h的值为1.0，是e的值为2.2，是l的值为-3.0，是o的值为4.1，那么我们的神经网络就会预测下一个字符是o（因为o的数值最大），但是很明显它预测的是错的，这样我们就要对它进行梯度下降，我们利用反向传播算法调整hidden layer的参数，然后我们进入下一个单元继续进行这样的操作，做很多很多次，最后我们神经网络hidden layer的参数就会相对准确，能够准确预测下一个字符。</p>
 <p>那么有人会问，为什么它叫做循环神经网络呢？其实这个很好解释，很多时候你在网上看到的循环神经网络并不会像上图这样是展开的，一般网上贴的RNN都是讲展开的网络收缩，变成下图这样的示意图</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络2.png" alt></p>
+<p><img src="/img/RNN循环神经网络2.png" alt></p>
 <p>这就是收缩的示意图，我们看到有一条线从右边出来又回到了左边，这个就可以看成我们前面那个展开图的我用黑圈画出来的边，代表的意思当然也是相同的啦。</p>
 <h1 id="RNN多种形态的应用"><a href="#RNN多种形态的应用" class="headerlink" title="RNN多种形态的应用"></a>RNN多种形态的应用</h1><p>前面的RNN我们只举了一个例子，就是语言方面的例子，当然我们的RNN解决这方面的问题无疑是相当出色的，那么RNN还能应用到哪些方面呢？</p>
 <p>接下来放出一张RNN的多种形态的图片，RNN的应用场景大致可以分成三种</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络3.jpeg" alt></p>
+<p><img src="/img/RNN循环神经网络3.jpeg" alt></p>
 <p>我们忽略最左边的那个，后面的四个就是RNN应用的不同类型的场景。</p>
 <p>首先是一对多的场景，这种场景举个例子就像我练习过的写诗的场景，我在训练完写诗的神经网络之后，我只要输入开头的第一字，机器就会自动往下写出一首诗，这就是一个一对多的典型的例子，经常是多对多训练好神经网络然后使用一对多输出。</p>
 <p>然后是多对一的场景，多对一的RNN经常适用于文本分类，情感分析问题，经常就是一大堆输入，然后输出只有一个，比如文本分类就是，给了整段的文本，最后神经网络也就是输出一个向量来分类。</p>
 <p>最后是多对多的场景，多对多的场景上面那个hello已经举过例子了，就不赘述了，当然对于这种多对多的应用场景，有一个专业的名词叫做<strong>seq2seq</strong>，也就是<strong>Sequence to Sequence</strong>。</p>
 <h1 id="RNN的数学推导"><a href="#RNN的数学推导" class="headerlink" title="RNN的数学推导"></a>RNN的数学推导</h1><p>这一节相对来讲就比较枯燥难懂一些，如果不想看公式的同学可以跳过，等用到了再找公式也行。</p>
 <h2 id="RNN前向输出"><a href="#RNN前向输出" class="headerlink" title="RNN前向输出"></a>RNN前向输出</h2><p>首先我们来讲一下前向传播的过程，先放上图片</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络4.png" alt></p>
+<p><img src="/img/RNN循环神经网络4.png" alt></p>
 <p>这里我们将x作为输入，h就是hidden layer（隐藏层），o为输出，L为损失函数（就是预测值和真实值的差距），那么y就是真实值了（L是用o和y算出来的），V、W、U是权值，我们可以看到前向传播就非常简单了</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">其中ϕ()为激活函数，一般来说会选择tanh函数，b为偏置。</span><br><span class="line"></span><br><span class="line">其实说白了就是对上一个的输出乘上一个权值，再将输入乘上一个权值，然后将结果往后面的单元传播，最后再乘上一个权值作为输出。</span><br><span class="line"></span><br><span class="line">t时刻的输出就更为简单： </span><br><span class="line"></span><br><span class="line">```o(t)=Vh(t)+co(t)=Vh(t)+c</span><br></pre></td></tr></table></figure>
 <p>最终模型的预测输出为： </p>
@@ -432,16 +432,16 @@
 <h2 id="RNN反向传播"><a href="#RNN反向传播" class="headerlink" title="RNN反向传播"></a>RNN反向传播</h2><p>熟悉神经网络的同学可以知道我们常使用BP算法训练神经网络，当然，RNN增加了记忆功能，当然不能用普通的BP算法，所以科学家们稍加改进，发明了BPTT算法（back-propagation through time），其含义就是随着时间进行反向传播，核心思想与BP算法一致，只是增加了随着时间链的梯度下降。</p>
 <p>还是神经网络那一套，我们需要进行求偏导然后沿着梯度每次往下降最快的方向走出一小步，久而久之我们的RNN的参数就可以变得比较合理了。</p>
 <p>我们对V，W，U三个参数进行进一步的观察。</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络5.png" alt></p>
+<p><img src="/img/RNN循环神经网络5.png" alt></p>
 <p>针对于输出的函数V我们只需要求一次偏导就行了，因为V并没有历史数据，因为上图的V之间并没有什么时间顺序上的关系，当然最后计算损失函数需要将每个输出位置上的损失值都进行累加，所以就得出下面的式子</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络6.png" alt></p>
+<p><img src="/img/RNN循环神经网络6.png" alt></p>
 <p>然后就是对U、W进行分析了，因为这两个差不多，都要随着时间链求偏导，所以我就只放一个图了，来！上图！</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络7.png" alt></p>
+<p><img src="/img/RNN循环神经网络7.png" alt></p>
 <p>上面图中画横线的就是我们需要反向传播求偏导的路线，我们可以拿三个单元举例子，写一下U和W的公式</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络8.png" alt></p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络9.png" alt></p>
+<p><img src="/img/RNN循环神经网络8.png" alt></p>
+<p><img src="/img/RNN循环神经网络9.png" alt></p>
 <p>就是沿着时间线一直求偏导，这个公式看上去非常复杂了，我们简化一下，变成下面这样</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络10.png" alt></p>
+<p><img src="/img/RNN循环神经网络10.png" alt></p>
 <p>我们再把中间层的h换成激活函数和W，可以得到</p>
 <p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络11.png" alt></p>
 <p>这个和上面那个公式合起来就是我们BPTT推导出来的公式了，当然这个连乘会导致RNN出现问题，这个就要进入我们的下一节了。</p>
@@ -455,9 +455,9 @@
 <p>我们最终还可以通过改进模型来解决这个问题，LSTM、GRU单元是解决这种长期依赖问题的利器，我下一篇博客就将细讲一下LSTM神经网络。</p>
 <h1 id="RNN模型拓展"><a href="#RNN模型拓展" class="headerlink" title="RNN模型拓展"></a>RNN模型拓展</h1><p>根据传统RNN，学者们又发展出了许多优化版本。</p>
 <p><strong>双向RNN</strong></p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络12.png" alt></p>
+<p><img src="/img/RNN循环神经网络12.png" alt></p>
 <p><strong>各种版本的深度RNN</strong></p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络13.png" alt></p>
+<p><img src="/img/RNN循环神经网络13.png" alt></p>
 <h1 id="图片来源"><a href="#图片来源" class="headerlink" title="图片来源"></a>图片来源</h1><p>图片主要是来自于Andrej的博客和Christopher Olah的博客，两位大佬的文章写得非常通俗易懂，还参考了CSDN的两篇文章，基本我都是以自己的话概括这些大佬们的理论，应该还算比较通俗易懂。</p>
 <p>下面是参考文章链接：</p>
 <p>Andrej的博客：<a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener">https://karpathy.github.io/2015/05/21/rnn-effectiveness/</a></p>
@@ -467,7 +467,7 @@
 <p><a href="https://blog.csdn.net/fangqingan_java/article/details/53014085" target="_blank" rel="noopener">https://blog.csdn.net/fangqingan_java/article/details/53014085</a></p>
 <h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>终于完成了这篇大文章，这篇文章刷新了我博客迄今为止的最长博文的记录，确实想要系统地讲明白循环神经网络还是非常不容易滴！构思了好久，总共花了一天的时间完成了这篇博文。我可能在理论深度上是远远不及那些大佬的，但是我也算是拿自己的话讲述了一遍，应该会比较通俗易懂吧，希望能帮助到愿意学习RNN的同学。</p>
 <p>最后预告一波，下一篇博文是<strong>LSTM神经网络</strong>，规模应该也不会小哈哈。</p>
-<p><img src="/Users/eric/Desktop/blog/source/img/RNN循环神经网络14.jpeg" alt></p>
+<p><img src="/img/RNN循环神经网络14.jpeg" alt></p>
 
       
     </div>
@@ -588,7 +588,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">107</span>
+                    <span class="site-state-item-count">108</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -867,7 +867,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
